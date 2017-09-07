@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- <configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	配置分页插件
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+        	<property name="dialect" value="mysql"/>
+		</plugin>
+	</plugins>
+</configuration> -->
+
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="smartMap" type="tech.lihx.demo.core.common.util.SmartMap" />
+	</typeAliases>
+	<plugins>
+		<plugin interceptor="tech.lihx.demo.core.mybatis.mybatis.MybatisExeTimeInterceptor" />
+		<plugin interceptor="tech.lihx.demo.core.mybatis.mybatis.IndexingInterceptor" />
+		<plugin interceptor="tech.lihx.demo.core.mybatis.mybatis.PagingInterceptor" />
+		<plugin interceptor="tech.lihx.demo.core.cache.dao.MapperCacheInterceptor" />
+		<!-- <plugin interceptor="tech.lihx.demo.core.mybatis.mybatis.MybatisTableCacheInterceptor">
+			<property name="cachedTables" value="test" />
+		</plugin> -->
+		<plugin interceptor="tech.lihx.demo.core.mybatis.mybatis.IdentityInterceptor" />
+		<plugin interceptor="tech.lihx.demo.core.mybatis.mybatis.BatchInterceptor" />
+	</plugins>
+</configuration>

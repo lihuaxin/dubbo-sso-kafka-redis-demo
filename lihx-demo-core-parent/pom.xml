@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>tech.lihx.demo</groupId>
+    <artifactId>lihx-demo-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../lihx-demo-parent</relativePath>
+  </parent>
+  
+  <groupId>tech.lihx.demo.core</groupId>
+  <artifactId>lihx-demo-core-parent</artifactId>
+  <packaging>pom</packaging>
+  
+  <modules>
+     <module>demo-core-common</module>
+     <module>demo-core-entity</module>
+     <module>demo-core-util</module>
+     <module>demo-core-dao</module>
+     <module>demo-core-standalone</module>
+     <module>demo-core-mq</module>
+     <module>demo-core-mybatis</module>
+     <module>demo-core-support</module>
+     <module>demo-core-module-interface</module>
+     <module>demo-core-cache</module>
+     <module>demo-core-web</module>
+     <module>demo-core-sso</module>
+  </modules>
+</project>

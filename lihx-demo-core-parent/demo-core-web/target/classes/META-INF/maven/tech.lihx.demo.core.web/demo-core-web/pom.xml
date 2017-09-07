@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>tech.lihx.demo.core</groupId>
+    <artifactId>lihx-demo-core-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+ 
+  <groupId>tech.lihx.demo.core.web</groupId>
+  <artifactId>demo-core-web</artifactId>
+  <packaging>jar</packaging>
+  
+  <properties>
+  		<demo.version>1.0.0-SNAPSHOT</demo.version>
+  </properties>
+  
+  <!-- 依赖管理 -->
+  <dependencies>
+  
+		<dependency>
+			<groupId>tech.lihx.demo.core.cache</groupId>
+			<artifactId>demo-core-cache</artifactId>
+			<version>${demo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>tech.lihx.demo.core.sso</groupId>
+			<artifactId>demo-core-sso</artifactId>
+			<version>${demo.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.patchca</groupId>
+			<artifactId>patchca</artifactId>
+		</dependency> 
+  </dependencies>
+</project>

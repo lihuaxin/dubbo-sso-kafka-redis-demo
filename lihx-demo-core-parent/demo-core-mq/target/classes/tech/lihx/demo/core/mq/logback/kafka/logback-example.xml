@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="KAFKA"
+        class="com.jiajiao.core.mq.logback.kafka.KafkaAppender">
+        <topic>foo</topic>
+        <zookeeperHost>localhost:2181</zookeeperHost>
+        <formatter class="com.jiajiao.core.mq.logback.kafka.formatter.JsonFormatter">
+            <expectJson>true</expectJson>
+        </formatter>
+    </appender>
+    <root level="debug">
+        <appender-ref ref="KAFKA" />
+    </root>
+</configuration>

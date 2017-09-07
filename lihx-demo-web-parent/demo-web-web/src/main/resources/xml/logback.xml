@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="1000 seconds">
+	
+	<timestamp key="date" datePattern="yyyyMMdd" />
+	
+	<!-- Output to Console -->
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %level %c:%L - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	
+	<!-- Output to File -->
+	<appender name="File"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<File>/home/webuser/logs/peixun.vko.cn/peixun-web-cloud.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				/home/webuser/logs/peixun.vko.cn/%d{yyyy-MM-dd}/peixun-web-cloud.log
+			</FileNamePattern>
+			<MaxHistory>10</MaxHistory>
+		</rollingPolicy>
+		
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %level %c:%L - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	
+	#if($environment.isProduct())
+	<root level="WARN">
+		<appender-ref ref="File" />
+	</root>
+	
+	#elseif($environment.isTest())
+	<root level="WARN">
+		<appender-ref ref="Console" />
+		<appender-ref ref="File" />
+	</root>
+	
+	#else
+	<root level="DEBUG">
+		<appender-ref ref="Console" />
+		<appender-ref ref="File" />
+	</root>
+	<logger name="cn.vko.peixun.core.mybatis" level="info" />
+	<logger name="org.aspectj" level="info" />
+	<logger name="org.apache.ibatis" level="info" />
+	<logger name="org.mybatis" level="info" />
+	<logger name="net.sf.ehcache" level="info" />
+	<logger name="org.springframework" level="info" />
+	<logger name="org.apache" level="info" />
+	<logger name="com.alibaba" level="info" />
+	<logger name="org.I0Itec" level="info" />
+	<logger name="com.alibaba.dubbo.config" level="ERROR" />
+	<logger name="com.alibaba.dubbo.remoting.transport" level="ERROR" />
+	<logger name="com.alibaba.dubbo.rpc.protocol.dubbo" level="WARN" />
+	<logger name="cn.vko.peixun.core.sso.common.Browser" level="ERROR" />
+	<logger name="httpclient.wire.content" level="WARN" />
+	<logger name="httpclient.wire.header" level="WARN" />
+	<logger name="org.apache.shiro.cache.ehcache" level="WARN" />
+	#end
+</configuration>

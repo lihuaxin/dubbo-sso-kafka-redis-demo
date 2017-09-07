@@ -1,0 +1,30 @@
+<!Doctype html>
+<html xmlns=http://www.w3.org/1999/xhtml>
+<head>
+	<meta http-equiv=Content-Type content="text/html;charset=GBK" />
+	<title>Spring MVC + Mybatis 示例</title>
+	<script src="$rc.contextPath/js/jquery-1.10.2.js"></script>
+	<script src="$rc.contextPath/js/jquery.cookie.js"></script>
+	
+    <link rel="stylesheet" href="$name/$rc.contextPath/bootstrap3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="$rc.contextPath/bootstrap3.0.0/css/bootstrap-theme.min.css">
+    <script src="$rc.contextPath/bootstrap3.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="bs-header">
+      <div class="container">
+        <h1>Spring MVC + Mybatis 示例</h1>
+		
+        <ul class="nav nav-pills">
+          <li><a href="$rc.contextPath/">Showcase</a></li>
+          <li><a href="$rc.contextPath/user/list">综合示例</a></li>
+        </ul>
+		<p></p>
+      </div>
+    </div><!-- END bs-header-->
+	
+	<div class="container">
+        $screen_content
+    </div><!-- END container-->
+</body>
+</html>

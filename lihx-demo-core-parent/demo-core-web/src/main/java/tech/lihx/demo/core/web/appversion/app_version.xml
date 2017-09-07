@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<apps>
+	<app type="apk" version="1.0">
+		<name>yxy</name>
+		<downurl></downurl>
+		<description>亲！测试一下.</description>
+	</app>
+	<app type="ipa" version="1.0">
+		<name>yxy</name>
+		<downurl></downurl>
+		<description>亲！测试一下.</description>
+	</app>
+</apps>

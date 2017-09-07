@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="1000 seconds">
+	
+	<timestamp key="date" datePattern="yyyyMMdd" />
+	
+	<!-- Output to Console -->
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %level %c:%L - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	
+	<!-- Output to File -->
+	<appender name="File"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>/home/webuser/logs/demo.lihx.tech/demo-module-user.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				/home/webuser/logs/demo.lihx.tech/%d{yyyy-MM-dd}/peixun-module-admin.log
+			</FileNamePattern>
+			<MaxHistory>10</MaxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %level %c:%L - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	
+	#if($environment.isProduct())
+	<root level="WARN">
+		<appender-ref ref="File" />
+	</root>
+	
+	#elseif($environment.isTest())
+	<root level="WARN">
+		<appender-ref ref="Console" />
+		<appender-ref ref="File" />
+	</root>
+	
+	#else
+	<root level="DEBUG">
+		<appender-ref ref="Console" />
+		<appender-ref ref="File" />
+	</root>
+	<logger name="tech.lihx.demo.core.mybatis" level="info" />
+	<logger name="tech.lihx.demo.user.mapper" level="info" />
+	<logger name="org.aspectj" level="info" />
+	<logger name="org.apache.ibatis" level="info" />
+	<logger name="org.mybatis" level="info" />
+	<logger name="net.sf.ehcache" level="info" />
+	<logger name="org.springframework" level="info" />
+	<logger name="org.apache" level="info" />
+	<logger name="com.alibaba" level="info" />
+	#end
+</configuration>

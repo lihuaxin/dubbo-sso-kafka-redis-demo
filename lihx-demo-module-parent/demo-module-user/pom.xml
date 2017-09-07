@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>tech.lihx.demo.module</groupId>
+		<artifactId>lihx-demo-module-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>tech.lihx.demo.module.user</groupId>
+	<artifactId>demo-module-user</artifactId>
+	<packaging>war</packaging>
+
+	<properties>
+		<demo.version>1.0.0-SNAPSHOT</demo.version>
+	</properties>
+
+	<!-- 依赖管理 -->
+	<dependencies>
+		<dependency>
+			<groupId>tech.lihx.demo.core.common</groupId>
+			<artifactId>demo-core-common</artifactId>
+			<version>${demo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>tech.lihx.demo.core.web</groupId>
+			<artifactId>demo-core-web</artifactId>
+			<version>${demo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>tech.lihx.demo.core.mybatis</groupId>
+			<artifactId>demo-core-mybatis</artifactId>
+			<version>${demo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>tech.lihx.demo.core.module</groupId>
+			<artifactId>demo-core-module-interface</artifactId>
+			<version>${demo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>tech.lihx.demo.core.mq</groupId>
+			<artifactId>demo-core-mq</artifactId>
+			<version>${demo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+		</dependency>
+		<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+</project>

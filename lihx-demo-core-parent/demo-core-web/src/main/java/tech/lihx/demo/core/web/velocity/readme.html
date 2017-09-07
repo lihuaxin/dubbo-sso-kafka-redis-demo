@@ -1,0 +1,80 @@
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="/blog/558194">扩展Velocity,实现模板的继承</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class='blog_categories'><strong>博客分类：</strong> <li><a href="/category/36866">Rapid-framework</a></li> </ul>
+        <div class='news_tag'><a href="http://www.iteye.com/blogs/tag/velocity">velocity</a><a href="http://www.iteye.com/blogs/tag/Cache">Cache</a><a href="http://www.iteye.com/blogs/tag/SVN">SVN</a><a href="http://www.iteye.com/blogs/tag/freemarker">freemarker</a><a href="http://www.iteye.com/blogs/tag/HTML">HTML</a>&nbsp;</div>
+  </div>
+
+  <div id="blog_content" class="blog_content">
+    <p><span><span>与我之前的<a href="/blog/553583">扩展freemarker</a>类似，现新增加三个指令：block,override,extends </span></span></p>
+<h2>一.目的：</h2>
+<ul>
+<li><span style="font-family: Courier New;">父模板页面定义好布局,子模板可以重定义布局中的部分内容</span></li>
+<li><span style="font-family: Courier New;">使模板可以实现类似"类"的继承关系,并不限继承层次</span></li>
+</ul>
+<h2>二.继承概榄：</h2>
+<p><strong>父模板：base.vm</strong></p>
+<pre name="code" class="html">&lt;html&gt;
+&lt;head&gt;
+	#block("head") 
+		base_head_content 
+	#end 
+&lt;/head&gt;
+&lt;body&gt; 
+	#block("body") 
+		base_body_content 
+	#end
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p> </p>
+<p><strong>子模板: child.vm</strong></p>
+<p><span style="font-family: Courier New;">
+</span></p>
+<pre name="code" class="html">#override("body")
+	&lt;div class='content'&gt;
+		Powered By rapid-framework
+	&lt;/div&gt; 
+#end
+#extends("base.vm")</pre>
+<p> <strong>子模板<span style="color: #ff0000;">child.vm输出</span></strong></p>
+<p> </p>
+<pre name="code" class="html">&lt;html&gt;
+	&lt;head&gt;
+		base_head_content 
+	&lt;/head&gt;
+&lt;body&gt; 
+	&lt;div class='content'&gt;
+		Powered By rapid-framework
+	&lt;/div&gt; 
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p> 可以看到，输出中body部分被子模板重定义(override)了，而head部分则还是显示父模板(block)中的内容。</p>
+<p> </p>
+<p> </p>
+<h2>三.指令介绍:</h2>
+<ul>
+<li>
+<strong>#block</strong> : 定义块，可以被子模板用#override指令覆盖显示</li>
+<li>
+<strong>#override</strong> :  覆盖#block指令显示的内容</li>
+<li>
+<strong>#extends</strong> : 继承其它模板，必须放在模板的最后面（注：该指令完全等价于#parse指令，只是为了提供统一的语义，即extends比parse更好理解）</li>
+</ul>
+<h2>四.使用说明:</h2>
+<p>在velocity的properties中可以设置:</p>
+<pre name="code" class="html">userdirective=cn.org.rapid_framework.velocity.directive.BlockDirective,cn.org.rapid_framework.velocity.directive.OverrideDirective,cn.org.rapid_framework.velocity.directive.ExtendsDirective
+然后再初始化，即中使用自定义指令：
+velocityEngine.init(properties);</pre>
+<p><strong><span style="color: #ff0000;">使用注意(关乎性能):</span></strong></p>
+<p>   必须为velocity的ResourceLoader开启cache,因为 engine.getTemplate(name) 默认是没有使用cache的,而#extends是需要经常调用该函数,所以必须为ResourceLoader指定开启cache,如FileResourceLoader</p>
+<p>
+</p>
+<pre name="code" class="java">file.resource.loader.cache = true</pre>
+ 
+<p> </p>
+<p>以上三个指令属于<a href="http://www.rapid-framework.org.cn/">rapid-framework</a>的扩展，后续新版本发布将包含该项扩展，敬请关注。<br>具体指令源码请查看:<br><a href="http://rapid-framework.googlecode.com/svn/trunk/rapid-framework/src/rapid_framework_common/cn/org/rapid_framework/velocity/directive/">http://rapid-framework.googlecode.com/svn/trunk/rapid-framework/src/rapid_framework_common/cn/org/rapid_framework/velocity/directive/</a></p>
+  </div>

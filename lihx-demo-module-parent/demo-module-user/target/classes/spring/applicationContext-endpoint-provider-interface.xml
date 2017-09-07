@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 配置应用信息  
+	<dubbo:application name="${dubbo.application.name.endpoint}" logger="slf4j" />
+	-->
+	
+	<!-- 配置ZOOKEEPER暴露服务 -->
+	<dubbo:registry protocol="zookeeper" address="${dubbo.zookeeper}" />
+	
+	<!-- 配置DUBBO服务端口 -->
+	<dubbo:protocol name="dubbo" port="${dubbo.port}" />
+	 
+	
+	<!-- 在这里配置对外提供的endpoint服务 
+	<dubbo:service interface="tech.lihx.demo.endpoint.admin.IBaseCodeEndpoint" ref="baseCodeEndpointImpl"/>
+	-->
+	
+</beans>

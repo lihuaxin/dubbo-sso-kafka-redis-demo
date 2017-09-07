@@ -1,0 +1,178 @@
+#macro(manage_page $pageObj)
+#set($url="$vkoUtil.getUrl()")
+
+#if(${pageObj.getHasPrevious()})
+	#set($_this=${pageObj.page} - 1)
+	#set($prevUrl="${url}_index=$_this")
+#else
+	#set($prevUrl="javascript:;")
+#end
+
+
+#if(${pageObj.getHasNext()})
+	#set($_this=${pageObj.page} + 1)
+	#set($nextUrl="${url}_index=$_this")
+#else
+	#set($nextUrl="javascript:;")
+#end
+
+
+#if(${pageObj.page} gt 3)
+	#set($start=${pageObj.page} - 2)
+#else 
+	#set($start=1)
+#end
+#set($end=${pageObj.page}+2)
+#if($end gt ${pageObj.getPages()})
+	#set($end=${pageObj.getPages()})
+#end
+#if(${pageObj.count} gt 0)
+<div class="pagination cf">
+	#if(${pageObj.getHasPrevious()})
+	<a href="${url}_index=1" class="prev"><s></s>首页</a>
+	<a href="$!{prevUrl}" class="prev"><s></s>上一页</a>
+	#end
+	#foreach($_number in [$start .. $end])
+	#if(${pageObj.page} eq $_number)
+  		<b>$_number</b>
+	#elseif($_number ne 0)
+		<a href="${url}_index=$_number">$_number</a>
+  	#end
+	#end
+	#if(${pageObj.getHasNext()})
+	<a href="$!{nextUrl}" class="next">下一页<s></s></a>
+	<a href="${url}_index=${pageObj.getPages()}" class="next">尾页<s></s></a>
+	#end
+</div>
+#end
+
+	        
+#end
+
+
+##默认值处理宏
+#macro (ifn $obj $def)
+#if($obj)$obj#else$def#end
+#end
+
+
+#macro (empty $obj $def)
+#if($obj && $obj!='')$obj#else$def#end
+#end
+
+#macro (iftrue $v1 $v2 $value)
+#if($v1==$v2)$value#end
+#end
+
+#macro (decode $v1 $v2 $v3 $value1 $value2 $value3)
+#if($v1 eq $v2)
+	$value1
+#elseif ($v1 eq $v3)
+	$value2
+#else 
+	$value3
+#end
+#end
+
+#macro(currentClass $modulePath $className)
+#set($url=$request.getRequestURI())
+#set($currentClass="")
+#foreach ($path in $modulePath.split(";"))#if($path  && $path  ne '' && ${url.contains($path )})#set($currentClass=$className)#end#end$currentClass
+#end
+
+#macro(currentIcon $modulePath $icon)
+#set($url=$request.getRequestURI())
+#set($newIcon="_1")
+#foreach ($path in $modulePath.split(";"))#if($path && $path ne '' && ${url.contains($path)})#set($icon="$icon$newIcon")#end#end$icon
+#end
+
+##分页宏
+#macro(paging $pageList $urlBase)
+	#if(${pageList})
+		#if(${pageList.count} gt 1)
+    		#set($temp=${pageList.count} / ${pageList.pageSize})
+         	#if(${pageList.count} % ${pageList.pageSize} eq 0)
+         		#set($pageCount = $temp)
+         	#else
+         		#set($pageCount = $temp+1)
+         	#end
+         	#if($pageCount gt 1)
+    	        <div class="pagination cf">
+    	        	#set($lastPage = ${pageList.page} - 1)
+    	        	#set($nextPage = ${pageList.page} + 1)
+    	    		#if(${pageList.page} - 4 le 1)
+    	    			#set($dddd = 1)
+    	    		#else
+    	    			#set($dddd = ${pageList.page} - 4)
+    	    		#end
+    	    		#if($pageCount - ${pageList.page} gt 4)
+    	    			#set($eeee = ${pageList.page} + 4)
+    	    		#else
+    	    			#set($eeee = $pageCount)
+    	    		#end
+    	        	#if(${pageList.getHasPrevious()})
+    	        		<a class="prev" href="${urlBase}_${lastPage}.html"><s></s>上一页</a>
+    	        		#foreach($foo in [$dddd .. $lastPage])
+    	        			<a href="${urlBase}_${foo}.html">${foo}</a>
+    	        		#end
+    	        	#end
+    	        	<b>${pageList.page}</b>
+    	        	#if($pageCount - ${pageList.page} gt 0)
+    	        		#foreach($foo in [$nextPage .. $eeee])
+    	        			<a href="${urlBase}_${foo}.html">${foo}</a>
+    	        		#end
+    	        	#end
+    	        	#if(${pageList.getHasNext()})
+    	        		<a class="next" href="${urlBase}_${nextPage}.html">下一页<s></s></a>
+    	        	#end
+    	        </div>
+			#end
+		#end
+	#end
+#end
+
+##根据角色输出不同内容
+#macro(role_print $student $parent $teacher $admin)
+#set($print="#")
+##学生
+#if($!{user.type} eq 1)
+#set($print=$student)
+
+##教师
+#elseif($!{user.type} eq 2)
+#set($print=$teacher)
+
+##家长
+#elseif($!{user.type} eq 3)
+#set($print=$parent)
+
+##管理员
+#elseif($!{user.type} eq 4)
+#set($print=$admin)
+#end$print#end
+
+##用来生成家校沟通的留言title
+#macro(titleMaker $msg)
+	<p class="class_master">
+		#if($msg.jobTitle.contains(" 班主任")&&!$msg.jobTitle.contains(" 副班主任"))
+			#set($tb =$msg.jobTitle.replace(" 班主任",""))
+			<var class="teacher1">班主任</var><span>$tb</span><br/>$msg.userName
+		#elseif($msg.jobTitle.contains(" 副班主任"))
+			#set($tf =$msg.jobTitle.replace(" 副班主任",""))
+			<var class="teacher2">副班主任</var><span>$tf</span><br/>$msg.userName
+		#else
+			<span>$msg.jobTitle</span><br/>$msg.userName
+		#end
+	</p>
+#end
+##
+
+##用来显示头像 如果头像为空就显示一个默认男头像
+#macro(printHeader $url)
+	#if($null.isNull($url) or $url eq '')vko-web/demo/male.png#else$url#end
+#end
+##
+
+
+
+

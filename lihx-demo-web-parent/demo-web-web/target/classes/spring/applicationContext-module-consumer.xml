@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 配置应用信息 -->
+	<dubbo:application name="${dubbo.application.name}" logger="slf4j" />
+	
+	<!-- 配置ZOOKEEPER服务地址 -->
+	<dubbo:registry protocol="zookeeper" address="${dubbo.zookeeper}" />
+
+	<!-- 配置CONSUME接口超时时间 -->
+	<dubbo:consumer timeout="${dubbo.timeout}" retries="0" lazy="true"/>
+	
+
+	<!-- 用户组件 -->
+    <dubbo:reference id="demoUserModuleImpl" interface="tech.lihx.demo.core.module.user.IDemoUserModule" url="${service.url.user}"/> 
+    
+	
+</beans>

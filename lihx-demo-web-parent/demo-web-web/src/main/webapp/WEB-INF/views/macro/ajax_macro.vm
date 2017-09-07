@@ -1,0 +1,81 @@
+#macro(ajax_page $pageObj)
+#set($_previous=${pageObj.page} - 1)
+#if($_previous<1)
+	#set($_previous=1)
+#end
+#set($_next=${pageObj.page} + 1)
+#if($_next>${pageObj.getPages()})
+	#set($_next=${pageObj.getPages()})
+#end
+#if(${pageObj.page}>5)
+	#set($start=${pageObj.page} - 4)
+#else 
+	#set($start=1)
+#end
+#set($end=${pageObj.page}+4)
+#if($end>${pageObj.getPages()})
+	#set($end=${pageObj.getPages()})
+#end
+#if(${pageObj.getPages()}==0)
+#else
+	<div class="pagination cf" url="$!{pageObj.url}">
+		#if(${pageObj.page}==1)
+		#else
+		<a href="javascript:void(0)" _index="$!{_previous}" class="prev"><s></s>上一页</a>
+		#end
+	#foreach($_number in [$start .. $end])
+		#if(${pageObj.page}==$_number)
+	  		<b>$_number</b>
+		#elseif($_number!=0)
+			<a href="javascript:void(0)" _index="$_number">$_number</a>
+	  	#end
+	#end
+		#if(${pageObj.page}==${pageObj.getPages()})
+		#else
+		<a href="javascript:void(0)" _index="$!{_next}" class="next">下一页<s></s></a>
+		#end
+	</div>
+	#end        
+#end
+
+#macro(ajax_page_auto $pageObj $url $container $data)
+#if($null.isNull($data))
+#set($data='{}')
+#end
+#ajax_page($pageObj)
+<script type="text/javascript">
+define('common.paging',function(){
+	var Q=$;
+	var param=$data;
+	var paging=function(_index){
+		param._index=_index;
+		Q.ajax({
+			url:'$url',
+			data:param,
+			type:'post',
+			dataType:'json',
+			success:function(value){
+				if(value.success){
+					Q('#'+$container).html(value.data);
+				}
+				else{
+					alert(value.msg);
+				}
+			},
+			error:function(){
+				alert('分页失败,请检查url');
+			}
+		});
+	};
+	$('.pagination').on('click','.prev',function(){
+		paging(Q(this).attr('_index'));
+	}).on('click','.next',function(){
+		paging(Q(this).attr('_index'));
+	});
+	paging(1);
+});
+seajs.use('common.paging');
+</script>
+	        
+#end
+

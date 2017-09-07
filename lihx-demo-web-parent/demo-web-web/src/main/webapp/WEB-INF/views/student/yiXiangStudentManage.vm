@@ -1,0 +1,1242 @@
+#set($title = "yiXiangStudentManage")
+<!--遮罩-->
+<div class="masker" style="display: block;"></div>
+<!--更改责任人弹窗-->
+<div class="changeAdmin" id="changeAdminBox" style=" display: none;">
+    <div class="clearfix">
+        <input type="text" id="changeAdminIpt" style="border-top: none;border-left: none;border-right: none;" class="input" value="请输入被更改责任人姓名" onfocus="if(this.value=='请输入被更改责任人姓名'){this.value='';};this.style.borderBottomColor='#ffedcd';" onblur="if(this.value==''){this.value='请输入被更改责任人姓名';};this.style.borderBottomColor='#efefef';">
+        <input type="button" class="cancle_btn" id="cancleAdminBtn" value="取消" style="margin-top: 0;">
+        <input type="button" class="ok_btn" value="确定" style="margin-top: 0;">
+    </div>
+    <div class="morePeople" id="findMorePeople"><div class="headFootIcon icon_search"></div>按部门查找更多</div>
+</div>
+<!--更改责任人弹窗-->
+<!--按部门查找员工-->
+<div class="find_people" id="findPeople" style="display: block;">
+    <div class="title">按部门查找员工</div>
+    <div class="clearfix">
+        <div class="select_branch">
+            <h6>请选择部门</h6>
+            <div style="border: 1px solid #efefef;padding: 10px;height:266px;">
+                <div class="select_branch_t"><span class="headFootIcon icon"></span> 北京市海淀牡丹园分校</div>
+                <ul>
+                    <li>人事部</li><li>销售部</li><li>市场部</li><li>技术部</li>
+                </ul>
+            </div>
+        </div>
+        <div class="peopleList">
+            <h6>部门员工列表</h6>
+            <div style="border: 1px solid #efefef;padding: 10px;height:266px;">
+                <div class="input_field">
+                    <input type="text" class="input" value="按姓名筛选" onfocus="if(this.value=='按姓名筛选'){this.value='';};" onblur="if(this.value==''){this.value='按姓名筛选';};">
+                    <input type="button" class="headFootIcon search_btn" value="">
+                </div>
+                <table cellpadding="0" cellspacing="0" class="table_people_list">
+                    <tr class="tr1"><td class="td1"><span class="headFootIcon checkbox"></span> </td><td class="td2">姓名</td><td class="td3">职位</td><td class="td4">电话</td></tr>
+                    <tr class="tr2"><td class="td1"><span class="headFootIcon checkbox"></span></td><td class="td2">发发发</td><td class="td3">高级java开发工程是</td><td class="td4">18611355459</td></tr>
+                    <tr class="tr2"><td class="td1"><span class="headFootIcon checkbox"></span></td><td class="td2">姓名</td><td class="td3">职位</td><td class="td4">18611355459</td></tr>
+                </table>
+            </div>
+            <div class="clearfix">
+                <div class="cancle_btn" id="cancleMorePeopleBtn">取消</div>
+                <div class="ok_btn">确定</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--按部门查找员工-->
+<!--弹框-->
+<div class="dialog" style="display: none;">
+    <p>确定要将客户责任人？<br>由<b>&nbsp;&nbsp;王涛&nbsp;&nbsp;</b>改为<b>&nbsp;&nbsp;王涛涛&nbsp;&nbsp;</b></p>
+    <div class="clearfix">
+        <div class="cancle_btn">取消</div>
+        <div class="sure_btn">确定</div>
+    </div>
+</div>
+<!--弹框-->
+<!--新增学员-->
+<div class="addStudent add_info" id="addStudentBox" style="display: none;">
+    <div class="title">添加学生信息</div>
+    <div class="clearfix" style="padding: 5px 20px 30px 20px;overflow-y: scroll;height:700px;">
+        <div class="block_t">基本信息</div>
+        <div class="block_wrap">
+            <ul class="ul_block_wrap">
+                <li>
+                    <label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                    <input type="text" class="input" value="张媛媛">
+                </li>
+                <li>
+                    <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                    <input type="radio" class="radio" name="sex" value="男" checked="checked" />男&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" class="radio" name="sex" value="女" />女
+                </li>
+                <li>
+                    <label>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</label>
+                    <input type="text" value="1996-3-29" class="input">
+                </li>
+                <li>
+                    <label>就读学校：</label>
+                    <input type="text" value="北京昌平二中" class="input">
+                </li>
+                <li>
+                    <label>当前年级：</label>
+                    <select class="select">
+                        <option>七年级</option>
+                        <option>七年级</option>
+                        <option>七年级</option>
+                        <option>七年级</option>
+                    </select>
+                </li>
+                <li>
+                    <label>意向科目：</label>
+                    <select class="select">
+                        <option>学科</option>
+                        <option>学科</option>
+                        <option>学科</option>
+                        <option>学科</option>
+                    </select>
+                </li>
+                <li>
+                    <label>联系电话：</label>
+                    <input type="text" value="18611355459" class="input">
+                </li>
+                <li>
+                    <label>微信绑定：</label>
+                    <input type="text" value="" class="input" id="bindApp">
+                </li>
+            </ul>
+        </div>
+        <div class="block_t">联系方式</div>
+        <div class="block_wrap">
+            <ul class="ul_block_wrap" id="addHere">
+                <li>
+                    <label>父亲姓名：</label>
+                    <input type="text" value="张浩民" class="input">
+                </li>
+                <li>
+                    <label>父亲职业：</label>
+                    <input type="text" value="律师" class="input">
+                </li>
+                <li>
+                    <label>父亲电话：</label>
+                    <input type="text" value="18611355459" class="input">
+                </li>
+                <li>
+                    <label>母亲姓名：</label>
+                    <input type="text" value="毛敏捷" class="input">
+                </li>
+                <li>
+                    <label>母亲职业：</label>
+                    <input type="text" value="会计" class="input">
+                </li>
+                <li>
+                    <label>母亲电话：</label>
+                    <input type="text" value="18611355459" class="input">
+                </li>
+            </ul>
+            <div class="clearfix" style="display: none;">
+                <ul class="add_keeper">
+                    <li>
+                        <label>关系姓名：</label>
+                        <input type="text" value="" class="input">
+                    </li>
+                    <li>
+                        <label>职业说明：</label>
+                        <input type="text" value="" class="input">
+                    </li>
+                    <li>
+                        <label>联系电话：</label>
+                        <input type="text" value="" class="input">
+                    </li>
+                </ul>
+                <div class="clearfix" style="float: right;">
+                    <div class="cancle_btn" style="margin-top: 0;" id="cancleAddKeeper">取消</div>
+                    <div class="ok_btn" style="margin-top: 0;" id="sureAddKeeper">确定</div>
+                </div>
+            </div>
+            <div class="clearfix"> <span id="error" class="error_tips"></span></div>
+            <div class="common_btn" id="addKeeperBtn" style="margin: 30px 0 0 0;">添加监护人</div>
+        </div>
+        <div class="block_t">报名意向</div>
+        <div class="block_wrap">
+            <div class="clearfix">
+                <label>意向课程：</label>
+                <input type="text" value="" class="input" style="width: 200px;">
+                <div class="headFootIcon icon_search" style="float: right; margin: 14px 468px 0 10px"></div>
+            </div>
+            <table class="wantClasses" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <td class="td1">课程名称</td>
+                    <td class="td2">所属科目</td>
+                    <td class="td3" colspan="3">对应班级</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="td1 border" rowspan="3"><a href="#">初升高寒假冲刺</a> </td>
+                    <td class="td2 border" rowspan="3">初三物理</td>
+                    <td class="td3 border">初级英语提高1班</td>
+                    <td class="td4 border">李敏（讲师）</td>
+                    <td class="td5 border">2016-4-18开班</td>
+                    <td class="td6 border" rowspan="3"><span class="headFootIcon edit_icon"></span><span class="headFootIcon delete_icon"></span> </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="td3 border">初级英语提高1班</td>
+                    <td class="td4 border">李敏（讲师）</td>
+                    <td class="td5 border">2016-4-18开班</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="td3 border">初级英语提高1班</td>
+                    <td class="td4 border">李敏（讲师）</td>
+                    <td class="td5 border">2016-4-18开班</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="block_t">业务信息</div>
+        <div class="block_wrap">
+            <ul class="ul_block_wrap">
+                <li>
+                    <label>招生来源：</label>
+                    <select class="select">
+                        <option>网络</option>
+                        <option>网络</option>
+                        <option>网络</option>
+                        <option>网络</option>
+                    </select>
+                </li>
+                <li>
+                    <label>业务负责人：</label>
+                    <input type="text" value="王涛" class="input">
+                </li>
+                <li>
+                    <label>客户状态：</label>
+                    <select class="select">
+                        <option>有意向</option>
+                        <option>有意向</option>
+                        <option>有意向</option>
+                        <option>有意向</option>
+                    </select>
+                </li>
+                <li>
+                    <label>所属校区：</label>
+                    <select class="select" style="width: 150px;">
+                        <option>昌平区实验中学</option>
+                        <option>昌平区实验中学</option>
+                        <option>昌平区实验中学</option>
+                        <option>昌平区实验中学</option>
+                    </select>
+                </li>
+                <li style="width: 800px;">
+                    <label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
+                    <input type="text" value="" class="input" style="width: 700px;">
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix" style="text-align: center;">
+            <div class="cancle_btn" id="cancleAddStudent">取消</div>
+            <div class="ok_btn">确定</div>
+        </div>
+    </div>
+</div>
+<!--新增学员-->
+<div class="headWrap">
+    <div class="head">
+        <ul>
+            <li>
+                <a href="#" target="_blank">
+                    <div class="headFootIcon mails"></div>
+                    <div class="headFootIcon mailsNum">9</div>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <div class="photo"><img src="/home/platform/cloud/images/photo.jpg" width="24" height="24"></div>
+                    Hi,王明明
+                    <div class="headFootIcon slideIcon"></div>
+                </a>
+            </li>
+            <li><a href="#" target="_blank">我的收藏</a></li>
+            <li style="background: none;"><a href="#" target="_blank">退出</a></li>
+        </ul>
+    </div>
+</div>
+<div class="navWrap">
+    <div class="nav">
+        <div class="logo"><img src="/home/platform/cloud/images/logo.jpg" width="150" height="40"></div>
+        <div class="clearfix leftF" style="padding-left: 49px;">
+            <ul class="first_nav">
+                <li><a href="#">学校概况</a> </li>
+                <li class="cur"><a href="#">学员管理</a> </li>
+                <li><a href="#">资源平台</a> </li>
+                <li><a href="#">教务教学</a> </li>
+                <li><a href="#">信息管理</a> </li>
+                <li><a href="#">人事架构</a> </li>
+                <li><a href="#">系统设置</a> </li>
+            </ul>
+            <div id="secondNav">
+                <ul class="second_nav">
+                    <li><a href="#" target="_blank">新学员报名</a></li>
+                    <li><a href="#" target="_blank">意向学员管理</a></li>
+                    <li><a href="#" target="_blank">正式学员管理</a></li>
+                    <li><a href="#" target="_blank">续班管理</a></li>
+                </ul>
+                <ul class="second_nav">
+                    <li><a href="#" target="_blank">新学员报名</a></li>
+                    <li><a href="#" target="_blank">意向学员管理</a></li>
+                    <li><a href="#" target="_blank">正式学员管理</a></li>
+                    <li><a href="#" target="_blank">续班管理</a></li>
+                </ul>
+                <ul class="second_nav">
+                    <li><a href="#" target="_blank">新学员报名</a></li>
+                    <li><a href="#" target="_blank">意向学员管理</a></li>
+                    <li><a href="#" target="_blank">正式学员管理</a></li>
+                    <li><a href="#" target="_blank">续班管理</a></li>
+                </ul>
+                <ul class="second_nav">
+                    <li><a href="#" target="_blank">新学员报名</a></li>
+                    <li><a href="#" target="_blank">意向学员管理</a></li>
+                    <li><a href="#" target="_blank">正式学员管理</a></li>
+                    <li><a href="#" target="_blank">续班管理</a></li>
+                </ul>
+                <ul class="second_nav">
+                    <li><a href="#" target="_blank">新学员报名</a></li>
+                    <li><a href="#" target="_blank">意向学员管理</a></li>
+                    <li><a href="#" target="_blank">正式学员管理</a></li>
+                    <li><a href="#" target="_blank">续班管理</a></li>
+                </ul>
+                <ul class="second_nav">
+                    <li><a href="#" target="_blank">新学员报名</a></li>
+                    <li><a href="#" target="_blank">意向学员管理</a></li>
+                    <li><a href="#" target="_blank">正式学员管理</a></li>
+                    <li><a href="#" target="_blank">续班管理</a></li>
+                </ul>
+                <ul class="second_nav">
+                    <li><a href="#" target="_blank">新学员报名</a></li>
+                    <li><a href="#" target="_blank">意向学员管理</a></li>
+                    <li><a href="#" target="_blank">正式学员管理</a></li>
+                    <li><a href="#" target="_blank">续班管理</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="location"><div class="headFootIcon icon"></div><a href="#" target="_blank">学员管理</a>   >   意向客户管理</div>
+    <div class="search">
+        <input type="text" id="phoneNo" style="border-top:none ;border-left:none ;border-right:none ;" class="input" value="学员姓名 / 手机号" onfocus="if(this.value=='学员姓名 / 手机号'){this.value='';};this.style.borderBottomColor='#ffedcd';" onblur="if(this.value==''){this.value='学员姓名 / 手机号';};this.style.borderBottomColor='#efefef';">
+        <input type="button" class="search_btn" value="查询">
+        <div class="search_icon"><div class="headFootIcon icon"></div> </div>
+        <span id="error" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;请输入正确的手机号！</span>
+    </div>
+    <div class="search_detail"><!--高级搜索-->
+        <div class="block1">
+            <label>客户状态 :</label>
+            <select>
+                <option><  不限  ></option>
+            </select>
+        </div>
+        <div class="block1">
+            <label>招生来源 :</label>
+            <select>
+                <option><  不限  ></option>
+            </select>
+        </div>
+        <div class="block1">
+            <label>班级类型 :</label>
+            <select>
+                <option><  不限  ></option>
+                <option>精品小班</option>
+                <option>大班</option>
+                <option>试听班</option>
+                <option>公开课</option>
+            </select>
+        </div>
+        <div class="block1">
+            <label>就读年级 :</label>
+            <select>
+                <option><  不限  ></option>
+            </select>
+        </div>
+        <div class="block1">
+            <label>试听状态 :</label>
+            <select>
+                <option><  不限  ></option>
+            </select>
+        </div>
+        <div class="block2">
+            <label>上次沟通 :</label>
+            <div id="c1Input" class="leftF">
+                <input type="text" class="input">
+                <input type="button" class="headFootIcon calendarIcon">
+            </div>
+            <span id="c1" style="position: absolute;left: 62px;top:206px;z-index: 902"></span>
+        </div>
+        <div class="block2">
+            <label>至 :</label>
+            <div id="c2Input" class="leftF">
+                <input type="text" class="input">
+                <input type="button" class="headFootIcon calendarIcon">
+            </div>
+            <span id="c2" style="position: absolute;left: 268px;top:206px;z-index: 902"></span>
+        </div>
+        <div class="block2">
+            <label>下次沟通 :</label>
+            <div id="c3Input" class="leftF">
+                <input type="text" class="input">
+                <input type="button" class="headFootIcon calendarIcon">
+            </div>
+            <span id="c3" style="position: absolute;left: 516px;top:206px;z-index: 902"></span>
+        </div>
+        <div class="block2">
+            <label>至 :</label>
+            <div id="c4Input" class="leftF">
+                <input type="text" class="input">
+                <input type="button" class="headFootIcon calendarIcon">
+            </div>
+            <span id="c4" style="position: absolute;left: 720px;top:206px;z-index: 902"></span>
+        </div>
+    </div><!--高级搜索-->
+    <div class="filter_box"><!--筛选结果表格-->
+        <div class="btn_wrap">
+            <div class="btn1"><a href="javascript:void(0);" id="addStudentBtn"> 新增</a></div>
+            <div class="btn2"><a href="javascript:void(0);"> 删除</a></div>
+            <div class="btn1"><a href="javascript:void(0);"> 转化为正式学员</a></div>
+            <div class="btn1"><a href="javascript:void(0);"> 转化为试听学员</a></div>
+            <div class="btn1" id="changeAdminBtn"><a href="javascript:void(0);"> 更改责任人</a></div>
+            <div class="btn3" id="selectLieBtn" style="padding: 0 10px;height:32px;"><a href="javascript:void(0);"> 选择列&nbsp;&nbsp;&nbsp;<em style="font-style: normal; color: #59aadf;"> |</em><span class="headFootIcon icon"></span> </a></div>
+            <div class="btn3"><a href="#" target="_blank"> 导出结果表单</a></div>
+            <ul class="select_ul">
+                <li class="li1"><span class="headFootIcon checkbox"></span>全选</li>
+                <li class="td1 li2" alt="sex"><span class="headFootIcon checkbox cur"></span>性别</li>
+                <li class="td2 li2" alt="customerState"><span class="headFootIcon checkbox cur"></span>客户状态</li>
+                <li class="td2 li2" alt="tryState"><span class="headFootIcon checkbox"></span>试听状态</li>
+                <li class="td2 li2" alt="studentCome"><span class="headFootIcon checkbox"></span>招生来源</li>
+                <li class="td1 li2" alt="age"><span class="headFootIcon checkbox cur"></span>年龄</li>
+                <li class="td2 li2" alt="wantClasses"><span class="headFootIcon checkbox cur"></span>意向课程</li>
+                <li class="td2 li2" alt="phoneeNum"><span class="headFootIcon checkbox"></span>手机号码</li>
+                <li class="td2 li2" alt="fatherName"><span class="headFootIcon checkbox"></span>父亲姓名</li>
+                <li class="td2 li2" alt="fatherPhone"><span class="headFootIcon checkbox cur"></span>父亲电话</li>
+                <li class="td2 li2" alt="mumPhone"><span class="headFootIcon checkbox"></span>母亲电话</li>
+                <li class="td2 li2" alt="address"><span class="headFootIcon checkbox"></span>家庭住址</li>
+                <li class="td2 li2" alt="publicSchool"><span class="headFootIcon checkbox"></span>公立学校</li>
+                <li class="td1 li2" alt="grade"><span class="headFootIcon checkbox cur"></span>年级</li>
+                <li class="td2 li2" alt="communicateTimes"><span class="headFootIcon checkbox"></span>沟通次数</li>
+                <li class="td2 li2" alt="wantSubject"><span class="headFootIcon checkbox"></span>意向科目</li>
+                <li class="td1 li2" alt="cpmmunicatePerson"><span class="headFootIcon checkbox"></span>沟通人</li>
+            </ul>
+        </div>
+        <div style="width:1160px;overflow:auto;border-bottom: 1px solid #f7f7f7;">
+            <div style="width: 11600px;" id="filterList">
+                <table border="0">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1"><span class="headFootIcon checkbox"></span> </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="name">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+						 #foreach ($student in $students)
+                           <tr class="tr2">
+                              <td class="td1" ><a href="#">$student.name</a></td>
+                           </tr> 
+                         #end 
+                    </tbody>
+                </table>
+                <table border="0" id="sex">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td1">性别</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                         #foreach ($student in $students)
+                           <tr class="tr2">
+                              <td class="td1"><a href="#">#if($student.sex == true) 男   #else 女  #end</a></td>
+                           </tr> 
+                         #end
+                    </tbody>
+                </table>
+                <table border="0" id="grade">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td1">年级<div class="headFootIcon sort"></div> </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">一年级</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="age">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td1">年龄</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    #foreach ($student in $students)
+                           <tr class="tr2">
+                              <td class="td1"><a href="#">$student.age</a></td>
+                           </tr> 
+                         #end
+                    </tbody>
+                </table>
+                <table border="0" id="fatherName" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">父亲姓名</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="fatherPhone">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">父亲电话</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="mumPhone" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">母亲电话</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">12345678962</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="address" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">家庭住址</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="publicSchool" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">公立学校</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="lastCommunicate">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">上次沟通<div class="headFootIcon sort"></div></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="communicateType">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">沟通类型<div class="headFootIcon sort"></div></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">13520188260</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="customerState">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">客户状态<div class="headFootIcon sort"></div></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">非常有意向</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="tryState" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">试听状态</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="studentCome" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">招生来源</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="nextCommunicate">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">下次跟进<div class="headFootIcon sort"></div></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">2016-4-19 15:30</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="wantClasses">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">意向课程</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#"> 初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2"><a href="#">初三英语口语提高</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="phoneNum" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">手机号码</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="keeper">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td1">负责人</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">姓名</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="communicateTimes" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">沟通次数</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">3</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="wantSubject" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td2">意向科目</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td2">语文</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" id="cpmmunicatePerson" style="display: none;">
+                    <thead>
+                    <tr class="tr1">
+                        <td class="td1">沟通人</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1">语文</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="pagination"><!--分页-->
+            <a class="pre" href="">上一页</a><a href="">1</a><a class="cur" href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><a href="">6</a>...<a href="" class="next">下一页</a>
+        </div><!--分页-->
+    </div><!--筛选结果表格-->
+</div>
+<div class="foot_wrap">Copyright © 2016.  All Rights Reserved.    技术支持：北京微课创景教育科技有限公司</div>
+<script src="http://js.peixun.vko.cn/common/js/jquery/jquery/1.7.2/jquery.js"></script>
+<script src="http://js.peixun.vko.cn/common/js/seajs/seajs/1.3.0/sea.js"></script>
+<script src="http://js.peixun.vko.cn/common/js/config.min.js"></script>
+<script src="http://js.peixun.vko.cn/vko/js/config.min.js"></script>
+<script src="http://js.peixun.vko.cn/platform/cloud/js/config.min.js"></script>
+<script src="http://js.peixun.vko.cn/common/js/jquery/jqwidgets/4.1.1/jqxcore.js"></script>
+<script src="http://js.peixun.vko.cn/common/js/jquery/jqwidgets/4.1.1/jqxinput.js"></script>
+<script src="http://js.peixun.vko.cn/common/js/jquery/jqwidgets/4.1.1/jqxdatetimeinput.js"></script>
+<script src="http://js.peixun.vko.cn/common/js/jquery/jqwidgets/4.1.1/jqxcalendar.js"></script>
+<script src="http://js.peixun.vko.cn/common/js/jquery/jqwidgets/4.1.1/jqxtooltip.js"></script>
+<script src="http://js.peixun.vko.cn/common/js/jquery/jqwidgets/4.1.1/globalize.js"></script>
+<script>
+    seajs.use('http://js.peixun.vko.cn/platform/cloud/js/xueyuanguanli/yiXiangStudentManage/init.min.js',function(main){
+        main.init();
+    })
+</script>
