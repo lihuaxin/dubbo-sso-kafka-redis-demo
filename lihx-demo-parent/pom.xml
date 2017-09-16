@@ -495,7 +495,7 @@
 		<repository>
 			<id>public</id>
 			<name>Internal Releases</name>
-			<url>http://nexus.efrobot.com:8081/nexus/content/groups/public</url>
+			<url>http://nexus.sifu.com:8081/nexus/content/groups/public</url>
 		</repository>
 	</distributionManagement>
 
